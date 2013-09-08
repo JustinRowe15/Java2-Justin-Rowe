@@ -1,3 +1,12 @@
+/*
+ *  project		VimeoFinder
+ * 
+ *  package		com.example.lib
+ * 
+ *  @author		Justin Rowe
+ * 
+ *  date		Sep 7, 2013
+ */
 package com.example.lib;
 
 import java.io.BufferedInputStream;
@@ -9,21 +18,45 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.util.Log;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class WebStuff.
+ */
 public class WebStuff {
 
+	/** The conn. */
 	static Boolean conn = false;
+	
+	/** The connection type. */
 	static String connectionType = "Unavailable";
 	
+	/**
+	 * Gets the connection type.
+	 *
+	 * @param context the context
+	 * @return the connection type
+	 */
 	public static String getConnectionType(Context context){
 		netInfo(context);
 		return connectionType;
 	}
 	
+	/**
+	 * Gets the connection status.
+	 *
+	 * @param context the context
+	 * @return the connection status
+	 */
 	public static Boolean getConnectionStatus(Context context){
 		netInfo(context);
 		return conn;
 	}
 	
+	/**
+	 * Net info.
+	 *
+	 * @param context the context
+	 */
 	private static void netInfo(Context context){
 		ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
 		NetworkInfo ni = cm.getActiveNetworkInfo();
@@ -35,6 +68,12 @@ public class WebStuff {
 		}
 	}
 	
+	/**
+	 * Gets the uRL string response.
+	 *
+	 * @param url the url
+	 * @return the uRL string response
+	 */
 	public static String getURLStringResponse(URL url) {
 		String response = "";
 		

@@ -1,3 +1,12 @@
+/*
+ *  project		VimeoFinder
+ * 
+ *  package		com.example.vimeofinder.helpers
+ * 
+ *  @author		Justin Rowe
+ * 
+ *  date		Sep 7, 2013
+ */
 package com.example.vimeofinder.helpers;
 
 import java.util.ArrayList;
@@ -12,14 +21,32 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class FavoriteVideos.
+ */
 public class FavoriteVideos extends LinearLayout {
 	
+	/** The add. */
 	Button add;
+	
+	/** The remove. */
 	Button remove;
+	
+	/** The list. */
 	Spinner list;
+	
+	/** The context. */
 	Context context;
+	
+	/** The tweets. */
 	ArrayList<String> tweets = new ArrayList<String>();
 	
+	/**
+	 * Instantiates a new favorite videos.
+	 *
+	 * @param context the context
+	 */
 	public FavoriteVideos(Context context){
 		super(context);
 		this.context = context;
@@ -61,6 +88,9 @@ public class FavoriteVideos extends LinearLayout {
 		this.setLayoutParams(layoutParams);
 	}
 	
+	/**
+	 * Update favorites.
+	 */
 	private void updateFavorites() {
 		tweets.add("TWEET 1");
 		tweets.add("TWEET 2");

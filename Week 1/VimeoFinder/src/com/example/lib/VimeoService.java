@@ -1,3 +1,12 @@
+/*
+ *  project		VimeoFinder
+ * 
+ *  package		com.example.lib
+ * 
+ *  @author		Justin Rowe
+ * 
+ *  date		Sep 7, 2013
+ */
 package com.example.lib;
 
 import java.net.MalformedURLException;
@@ -12,17 +21,32 @@ import android.os.Messenger;
 import android.os.RemoteException;
 import android.util.Log;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class VimeoService.
+ */
 public class VimeoService extends IntentService {
 	
+	/** The Constant MESSENGER_KEY. */
 	public static final String MESSENGER_KEY = "";
+	
+	/** The Constant BASE_URL. */
 	public static final String BASE_URL = null;
+	
+	/** The final url. */
 	static URL finalURL = null;
 
+	/**
+	 * Instantiates a new vimeo service.
+	 */
 	public VimeoService() {
 		super("VimeoService");
 		// TODO Auto-generated constructor stub
 	}
 
+	/* (non-Javadoc)
+	 * @see android.app.IntentService#onHandleIntent(android.content.Intent)
+	 */
 	@Override
 	protected void onHandleIntent(Intent intent) {
 		// TODO Auto-generated method stub

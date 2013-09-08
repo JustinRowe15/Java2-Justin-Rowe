@@ -1,3 +1,12 @@
+/*
+ *  project		VimeoFinder
+ * 
+ *  package		com.example.vimeofinder
+ * 
+ *  @author		Justin Rowe
+ * 
+ *  date		Sep 7, 2013
+ */
 package com.example.vimeofinder;
 
 import java.net.MalformedURLException;
@@ -31,23 +40,57 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.view.View.OnClickListener;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class MainActivity.
+ */
 public class MainActivity extends Activity {
 	
+	/** The context. */
 	Context context;
+	
+	/** The tweets view. */
 	TextView tweetsView;
+	
+	/** The get tweets button. */
 	Button getTweetsButton;
+	
+	/** The favorite tweets. */
 	FavoriteVideos favoriteTweets;
+	
+	/** The connected. */
 	Boolean connected = false;
+	
+	/** The history. */
 	HashMap<String, String> history;
+	
+	/** The search button. */
 	Button searchButton;
+	
+	/** The search. */
 	EditText search;
+	
+	/** The author result. */
 	TextView authorResult;
+	
+	/** The title result. */
 	TextView titleResult;
+	
+	/** The description result. */
 	TextView descriptionResult;
+	
+	/** The upload result. */
 	TextView uploadResult;
+	
+	/** The plays result. */
 	TextView playsResult;
+	
+	/** The final url. */
 	URL finalURL;
 
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onCreate(android.os.Bundle)
+	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -92,6 +135,9 @@ public class MainActivity extends Activity {
 		favoriteTweets = new FavoriteVideos(context);
 	}
 
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onCreateOptionsMenu(android.view.Menu)
+	 */
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -99,6 +145,12 @@ public class MainActivity extends Activity {
 		return true;
 	}
 	
+	/**
+	 * Gets the video.
+	 *
+	 * @param username the username
+	 * @return the video
+	 */
 	@SuppressLint("HandlerLeak")
 	private void getVideo(String username) {
 		// TODO Auto-generated method stub
@@ -141,6 +193,11 @@ public class MainActivity extends Activity {
 		}
 	}
 	
+	/**
+	 * Gets the history.
+	 *
+	 * @return the history
+	 */
 	@SuppressWarnings("unchecked")
 	private HashMap<String, String> getHistory(){
 		Object stored = FileStuff.readObjectFile(context, "history", false);
@@ -155,6 +212,11 @@ public class MainActivity extends Activity {
 		return history;
 	}
 	
+	/**
+	 * Display data.
+	 *
+	 * @param result the result
+	 */
 	public void displayData(String result){
 		try{
 			JSONArray json = new JSONArray(result);
