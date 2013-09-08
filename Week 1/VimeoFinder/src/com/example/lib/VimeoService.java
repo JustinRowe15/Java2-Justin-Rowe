@@ -15,7 +15,7 @@ import android.util.Log;
 public class VimeoService extends IntentService {
 	
 	public static final String MESSENGER_KEY = "";
-	public static final String URL_KEY = null;
+	public static final String BASE_URL = null;
 	static URL finalURL = null;
 
 	public VimeoService() {
@@ -30,7 +30,7 @@ public class VimeoService extends IntentService {
 		
 		Bundle extras = intent.getExtras();
 		Messenger messenger = (Messenger) extras.get(MESSENGER_KEY);
-		String vimeoURL = extras.getString(URL_KEY);
+		String vimeoURL = extras.getString(BASE_URL);
 		
 		try {
 			finalURL = new URL(vimeoURL);
@@ -44,7 +44,8 @@ public class VimeoService extends IntentService {
 		
 		try {
 			messenger.send(message);
-		} catch (RemoteException e) {
+		} 
+		catch (RemoteException e) {
 		Log.e("onHandleIntent", e.getMessage().toString());
 		e.printStackTrace();
 		}
