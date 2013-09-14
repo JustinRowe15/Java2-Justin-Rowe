@@ -26,6 +26,7 @@
             </intent-filter>
         </activity>
         <service android:name="com.example.lib.VimeoService"></service>
+        <provider android:exported="true" android:authorities='"com.example.vimeofinder.videoprovider"' android:name="com.example.vimeofinder.VideoProvider"></provider>
     </application>
 
 </manifest>

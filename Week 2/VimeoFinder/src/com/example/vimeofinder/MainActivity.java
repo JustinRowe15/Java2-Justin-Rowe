@@ -67,6 +67,9 @@ public class MainActivity extends Activity {
 	/** The search button. */
 	Button searchButton;
 	
+	/** The saved File. */
+	String savedFile = "savedFile.txt";
+	
 	/** The search. */
 	EditText search;
 	
@@ -109,7 +112,8 @@ public class MainActivity extends Activity {
 		uploadResult = (TextView) findViewById(R.id.vimeoUploadDate);
 		playsResult = (TextView) findViewById(R.id.vimeoNumberPlays);
 		searchButton = (Button) findViewById(R.id.searchButton);
-		search = (EditText) findViewById(R.id.searchField); 
+		search = (EditText) findViewById(R.id.searchField);
+		search.setText(VideoProvider.VimeoData.CONTENT_URI.toString());
 		
 		searchButton.setOnClickListener(new OnClickListener() {
 			@Override
@@ -166,15 +170,17 @@ public class MainActivity extends Activity {
 					
 					String response = null;
 					
-					if(msg.arg1 == RESULT_OK && msg.obj != null)
-					{
+					if(msg.arg1 == RESULT_OK && msg.obj != null) {
 						try {
 							response = (String) msg.obj;
+							final JSONArray results = new JSONArray(response);
+							FileStuff.storeStringFile(context, savedFile, results.toString());
+							
 							displayData(response);
 						} 
 						catch (Exception e)
 						{
-							Log.e("handleMessage", e.getMessage().toString());
+							Log.e("HANDLE MESSAGE", e.getMessage().toString());
 						}
 					}
 				}	
