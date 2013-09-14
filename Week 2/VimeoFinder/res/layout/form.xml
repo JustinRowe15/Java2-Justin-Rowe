@@ -38,7 +38,7 @@
             android:text="Author: "
             style="@style/VimeoLabel"/>
         <TextView
-            android:id="@+id/vimeoAuthor"
+            android:id="@+id/vimeoAuthor0"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/VimeoInfo"/>
@@ -49,18 +49,7 @@
             android:text="Title: "
             style="@style/VimeoLabel"/>
         <TextView
-            android:id="@+id/vimeoTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/VimeoInfo"/>
-        
-        <TextView 
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Description: "
-            style="@style/VimeoLabel"/>
-        <TextView
-            android:id="@+id/vimeoDescription"
+            android:id="@+id/vimeoTitle0"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/VimeoInfo"/>
@@ -71,7 +60,7 @@
             android:text="Upload Date: "
             style="@style/VimeoLabel"/>
         <TextView
-            android:id="@+id/vimeoUploadDate"
+            android:id="@+id/vimeoUploadDate0"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/VimeoInfo"/>
@@ -82,7 +71,183 @@
             android:text="Number of Plays: "
             style="@style/VimeoLabel"/>
         <TextView
-            android:id="@+id/vimeoNumberPlays"
+            android:id="@+id/vimeoNumberPlays0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/VimeoInfo"/>
+        
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Author: "
+            style="@style/VimeoLabel"/>
+        <TextView
+            android:id="@+id/vimeoAuthor1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/VimeoInfo"/>
+        
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Title: "
+            style="@style/VimeoLabel"/>
+        <TextView
+            android:id="@+id/vimeoTitle1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/VimeoInfo"/>
+        
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Upload Date: "
+            style="@style/VimeoLabel"/>
+        <TextView
+            android:id="@+id/vimeoUploadDate1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/VimeoInfo"/>
+        
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Number of Plays: "
+            style="@style/VimeoLabel"/>
+        <TextView
+            android:id="@+id/vimeoNumberPlays1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/VimeoInfo"/>
+        
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Author: "
+            style="@style/VimeoLabel"/>
+        <TextView
+            android:id="@+id/vimeoAuthor2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/VimeoInfo"/>
+        
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Title: "
+            style="@style/VimeoLabel"/>
+        <TextView
+            android:id="@+id/vimeoTitle2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/VimeoInfo"/>
+        
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Upload Date: "
+            style="@style/VimeoLabel"/>
+        <TextView
+            android:id="@+id/vimeoUploadDate2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/VimeoInfo"/>
+        
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Number of Plays: "
+            style="@style/VimeoLabel"/>
+        <TextView
+            android:id="@+id/vimeoNumberPlays2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/VimeoInfo"/>
+        
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Author: "
+            style="@style/VimeoLabel"/>
+        <TextView
+            android:id="@+id/vimeoAuthor3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/VimeoInfo"/>
+        
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Title: "
+            style="@style/VimeoLabel"/>
+        <TextView
+            android:id="@+id/vimeoTitle3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/VimeoInfo"/>
+        
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Upload Date: "
+            style="@style/VimeoLabel"/>
+        <TextView
+            android:id="@+id/vimeoUploadDate3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/VimeoInfo"/>
+        
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Number of Plays: "
+            style="@style/VimeoLabel"/>
+        <TextView
+            android:id="@+id/vimeoNumberPlays3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/VimeoInfo"/>
+        
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Author: "
+            style="@style/VimeoLabel"/>
+        <TextView
+            android:id="@+id/vimeoAuthor4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/VimeoInfo"/>
+        
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Title: "
+            style="@style/VimeoLabel"/>
+        <TextView
+            android:id="@+id/vimeoTitle4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/VimeoInfo"/>
+        
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Upload Date: "
+            style="@style/VimeoLabel"/>
+        <TextView
+            android:id="@+id/vimeoUploadDate4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/VimeoInfo"/>
+        
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Number of Plays: "
+            style="@style/VimeoLabel"/>
+        <TextView
+            android:id="@+id/vimeoNumberPlays4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/VimeoInfo"/>

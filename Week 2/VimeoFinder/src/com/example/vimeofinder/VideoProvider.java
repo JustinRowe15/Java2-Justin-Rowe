@@ -32,11 +32,12 @@ public class VideoProvider extends ContentProvider {
 		public static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.video/vnd.example.vimeofinder.video";
 		
 		//Define Columns
-		public static final String VIDEONAME_COLUMN = "name";
+		public static final String VIDEOAUTHOR_COLUMN = "author";
+		public static final String VIDEOTITLE_COLUMN = "name";
 		public static final String VIDEODATE_COLUMN = "date";
 		public static final String VIDEOVIEWS_COLUMN = "views";
 		
-		public static final String[] PROJECTION = { "_Id", VIDEONAME_COLUMN, VIDEODATE_COLUMN, VIDEOVIEWS_COLUMN };
+		public static final String[] PROJECTION = { "_Id", VIDEOAUTHOR_COLUMN, VIDEOTITLE_COLUMN, VIDEODATE_COLUMN, VIDEOVIEWS_COLUMN };
 		
 		private VimeoData() {};
 		
@@ -92,10 +93,10 @@ public class VideoProvider extends ContentProvider {
 		switch (uriMatcher.match(uri)){
 		//get all videos
 		case VIDEOS:
-			for (int i=0; i<10; i++) {
+			for (int i=0; i<5; i++) {
 				try {
 				results = json.getJSONObject(i);
-				result.addRow(new Object[] {i+1, results.getString("title"), results.getString("upload_date"), results.getString("stats_number_of_plays")});
+				result.addRow(new Object[] {i+1, results.getString("username"), results.getString("title"), results.getString("upload_date"), results.getString("stats_number_of_plays")});
 				} catch (Exception e) {
 					Log.e("JSON FOR LOOP", e.toString(), e);
 				}
@@ -106,12 +107,12 @@ public class VideoProvider extends ContentProvider {
 		case VIDEO_ID:
 			String videoRequested = uri.getLastPathSegment();
 			
-			for (int i=0; i<10; i++) {
+			for (int i=0; i<5; i++) {
 				try {
 					results = json.getJSONObject(i);
-					if (results.getString("title").contentEquals(videoRequested)){
+					if (results.getString("username").contentEquals(videoRequested)){
 						try {
-							result.addRow(new Object[] {i+1, results.getString("title"), results.getString("upload_date"), results.getString("stats_number_of_plays")});
+							result.addRow(new Object[] {i+1, results.getString("username"), results.getString("title"), results.getString("upload_date"), results.getString("stats_number_of_plays")});
 						} catch (Exception e) {
 							Log.e("SPECIFIC VIDEO REQUEST", e.toString(), e);
 						}
@@ -130,14 +131,14 @@ public class VideoProvider extends ContentProvider {
 	@Override
 	public Uri insert(Uri uri, ContentValues values) {
 		// TODO Auto-generated method stub
-		return null;
+		throw new UnsupportedOperationException();
 	}
 
 	@Override
 	public int update(Uri uri, ContentValues values, String selection,
 			String[] selectionArgs) {
 		// TODO Auto-generated method stub
-		return 0;
+		throw new UnsupportedOperationException();
 	}
 	
 	@Override
