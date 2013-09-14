@@ -96,7 +96,7 @@ public class VideoProvider extends ContentProvider {
 			for (int i=0; i<5; i++) {
 				try {
 				results = json.getJSONObject(i);
-				result.addRow(new Object[] {i+1, results.getString("username"), results.getString("title"), results.getString("upload_date"), results.getString("stats_number_of_plays")});
+				result.addRow(new Object[] {i+1, results.getString("user_name"), results.getString("title"), results.getString("upload_date"), results.getString("stats_number_of_plays")});
 				} catch (Exception e) {
 					Log.e("JSON FOR LOOP", e.toString(), e);
 				}
@@ -110,9 +110,9 @@ public class VideoProvider extends ContentProvider {
 			for (int i=0; i<5; i++) {
 				try {
 					results = json.getJSONObject(i);
-					if (results.getString("username").contentEquals(videoRequested)){
+					if (results.getString("user_name").contentEquals(videoRequested)){
 						try {
-							result.addRow(new Object[] {i+1, results.getString("username"), results.getString("title"), results.getString("upload_date"), results.getString("stats_number_of_plays")});
+							result.addRow(new Object[] {i+1, results.getString("user_name"), results.getString("title"), results.getString("upload_date"), results.getString("stats_number_of_plays")});
 						} catch (Exception e) {
 							Log.e("SPECIFIC VIDEO REQUEST", e.toString(), e);
 						}

@@ -135,7 +135,8 @@ public class MainActivity extends Activity {
 					if(msg.arg1 == RESULT_OK && msg.obj != null) {
 						try {
 							response = (String) msg.obj;
-							JSONArray results = new JSONArray(response);
+							JSONObject json = new JSONObject(response);
+							JSONArray results = json.getJSONArray("");
 							FileStuff.storeStringFile(context, savedFile, results.toString());
 							displayData();
 						} 
