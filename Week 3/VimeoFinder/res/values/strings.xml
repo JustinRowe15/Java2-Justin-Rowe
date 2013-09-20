@@ -5,9 +5,12 @@
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
     <string name="enter_vimeo_username">Enter Vimeo Username</string>
-    <string name="go">GO</string>
+    <string name="go">Go</string>
     <string name="author_">Author:</string>
     <string name="tweet_">Tweet:</string>
     <string name="upload_date_">Upload Date:</string>
+    <string name="extras_button">Go To Extra Videos</string>
+    <string name="show_extras_button">View Extra Videos</string>
+    <string name="show_extras_text">Push To View Vimeo Extra Videos</string>
 
 </resources>

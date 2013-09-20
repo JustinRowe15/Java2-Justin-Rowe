@@ -11,7 +11,6 @@ package com.example.vimeofinder;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.json.JSONArray;
@@ -23,8 +22,8 @@ import com.example.lib.VimeoService;
 import com.example.lib.WebStuff;
 import com.example.tweetfinder.R;
 import com.example.vimeofinder.helpers.FavoriteVideos;
+import com.example.vimeofinder.ExtrasActivity;
 
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -33,7 +32,6 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
 import android.view.Menu;
 import android.view.View;
 import android.util.Log;
@@ -48,7 +46,7 @@ import android.view.View.OnClickListener;
  * The Class MainActivity.
  */
 public class MainActivity extends Activity {
-
+	
 	Context context;
 	TextView tweetsView;
 	Button getTweetsButton;
@@ -56,7 +54,7 @@ public class MainActivity extends Activity {
 	Boolean connected = false;
 	HashMap<String, String> history;
 	Button searchButton;
-	String savedFile = "savedFile.txt";
+	Button extrasButton;
 	EditText search;
 	TextView authorResult;
 	TextView titleResult;
@@ -64,11 +62,6 @@ public class MainActivity extends Activity {
 	TextView uploadResult;
 	TextView playsResult;
 	URL finalURL;
-	static String enteredUsername;
-	static ArrayList<String> authorList;
-	static ArrayList<String> titleList;
-	static ArrayList<String> uploadList;
-	static ArrayList<String> numberOfPlaysList;
 
 	/* (non-Javadoc)
 	 * @see android.app.Activity#onCreate(android.os.Bundle)
@@ -85,12 +78,19 @@ public class MainActivity extends Activity {
 		history = getHistory();
 		
 		//Add Search Handler
+		authorResult = (TextView) findViewById(R.id.vimeoAuthor);
+		titleResult = (TextView) findViewById(R.id.vimeoTitle);
+		descriptionResult = (TextView) findViewById(R.id.vimeoDescription);
+		uploadResult = (TextView) findViewById(R.id.vimeoUploadDate);
+		playsResult = (TextView) findViewById(R.id.vimeoNumberPlays);
 		searchButton = (Button) findViewById(R.id.searchButton);
-		search = (EditText) findViewById(R.id.searchField);
+		extrasButton = (Button) findViewById(R.id.extrasButton);
+		search = (EditText) findViewById(R.id.searchField); 
 		
 		searchButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				search = (EditText) findViewById(R.id.searchField); 
 				if(search.getText().toString().length() == 0)
 				{
 					Toast.makeText(context, "Please Enter A Username", Toast.LENGTH_LONG).show();
@@ -98,6 +98,18 @@ public class MainActivity extends Activity {
 				} else {
 					getVideo(search.getText().toString());
 				}
+			}
+		});
+		
+		extrasButton.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				String username = search.getText().toString();
+				Intent i = new Intent(MainActivity.this, ExtrasActivity.class);
+				i.putExtra("myKey", username);
+				startActivityForResult(i, 0);
 			}
 		});
 		
@@ -121,48 +133,37 @@ public class MainActivity extends Activity {
 		return true;
 	}
 	
+	/**
+	 * Gets the video.
+	 *
+	 * @param username the username
+	 * @return the video
+	 */
 	@SuppressLint("HandlerLeak")
 	private void getVideo(String username) {
+		// TODO Auto-generated method stub
 		String baseURL = "http://vimeo.com/api/v2/" + username + "/videos.json";
 		try{
 			finalURL = new URL(baseURL);
+			
 			Handler vimeoHandler = new Handler(){
+
 				@Override
 				public void handleMessage(Message msg) {
+					// TODO Auto-generated method stub
 					
 					String response = null;
 					
-					if(msg.arg1 == RESULT_OK && msg.obj != null) {
-						
+					if(msg.arg1 == RESULT_OK && msg.obj != null)
+					{
 						try {
-							
 							response = (String) msg.obj;
-							JSONArray json = new JSONArray(response);
-							
-							String handle = "";
-                            String title = "";
-                            String date = "";
-                            
-                            //Log.i("MAIN", "json length->"+json.length()+", json.toString->"+json.toString());
-							
-                            FileStuff.storeStringFile(context, "savedFile.txt", json.toString());
-                            
-                            for(int i=0;i<json.length();i++) {
-                            	handle = json.getJSONObject(i).getString("user_name");
-                                title = json.getJSONObject(i).getString("title");
-                                date = json.getJSONObject(i).getString("upload_date");
-                                //Log.i("JSON DEBUG", "title="+title+", date="+date+", user_name="+handle);
-                            }
-                            
-							//displayData();
+							displayData(response);
 						} 
 						catch (Exception e)
 						{
-							Log.e("HANDLE MESSAGE", e.getMessage().toString());
-                            e.printStackTrace();
+							Log.e("handleMessage", e.getMessage().toString());
 						}
-						
-						displayData();
 					}
 				}	
 			};
@@ -198,113 +199,26 @@ public class MainActivity extends Activity {
 		}
 		return history;
 	}
-	 
+	
 	/**
 	 * Display data.
 	 *
 	 * @param result the result
 	 */
-	public void displayData(){
-		String username = search.getText().toString();
-		enteredUsername = username;
-		Uri uri = Uri.parse("content://com.example.vimeofinder.videoprovider/items");
-		Cursor vimeoCursor = getContentResolver().query(uri, null, null, null, null);
-		
-		if (vimeoCursor.getCount()>0) {
-			authorList = new ArrayList<String>();
-			titleList = new ArrayList<String>();
-			uploadList = new ArrayList<String>();
-			numberOfPlaysList = new ArrayList<String>();
-			
-			if (vimeoCursor.moveToFirst()) {
-				for (int i=0; i<vimeoCursor.getCount(); i++){
-					String author = vimeoCursor.getString(1);
-					String title = vimeoCursor.getString(2);
-					String uploadDate = vimeoCursor.getString(3);
-					String numberOfPlays = vimeoCursor.getString(4);
-					
-					authorList.add(author);
-					titleList.add(title);
-					uploadList.add(uploadDate);
-					numberOfPlaysList.add(numberOfPlays);
-					
-					vimeoCursor.moveToNext();
+	public void displayData(String result){
+		try{
+			JSONArray json = new JSONArray(result);
+			int j = json.length();
+			for (int i=0;i<j; i++){
+				JSONObject object = json.getJSONObject(i);
+				((TextView) findViewById(R.id.vimeoAuthor)).setText(object.getString("user_name"));
+				((TextView) findViewById(R.id.vimeoTitle)).setText(object.getString("title"));
+				((TextView) findViewById(R.id.vimeoDescription)).setText(object.getString("description"));
+				((TextView) findViewById(R.id.vimeoUploadDate)).setText(object.getString("upload_date"));
+				((TextView) findViewById(R.id.vimeoNumberPlays)).setText(object.getString("stats_number_of_plays"));
 				}
+			} catch (JSONException e){
+				Log.e("JSON", "JSON OBJECT EXCEPTION");
 			}
-			
-			for (int i=0; i<5; i++){
-				
-				if(i >= titleList.size()){
-					int resourceId = getResources().getIdentifier("vimeoAuthor" + i, "id", getPackageName());
-					TextView authorTitle = (TextView) findViewById(resourceId);
-					authorTitle.setText("");
-					
-					int resourceId1 = getResources().getIdentifier("vimeoTitle" + i, "id", getPackageName());
-					TextView displayTitle = (TextView) findViewById(resourceId1);
-					displayTitle.setText("");
-					
-					int resourceId2 = getResources().getIdentifier("vimeoUploadDate" + i, "id", getPackageName());
-					TextView uploadTitle = (TextView) findViewById(resourceId2);
-					uploadTitle.setText("");
-					
-					int resourceId3 = getResources().getIdentifier("vimeoNumberPlays" + i, "id", getPackageName());
-					TextView playsTitle = (TextView) findViewById(resourceId3);
-					playsTitle.setText("");
-				} else {
-					int resourceId = getResources().getIdentifier("vimeoAuthor" + i, "id", getPackageName());
-					TextView authorTitle = (TextView) findViewById(resourceId);
-					authorTitle.setText(authorList.get(i));
-					
-					int resourceId1 = getResources().getIdentifier("vimeoTitle" + i, "id", getPackageName());
-					TextView displayTitle = (TextView) findViewById(resourceId1);
-					displayTitle.setText(titleList.get(i));
-					
-					int resourceId2 = getResources().getIdentifier("vimeoUploadDate" + i, "id", getPackageName());
-					TextView uploadTitle = (TextView) findViewById(resourceId2);
-					uploadTitle.setText(uploadList.get(i));
-					
-					int resourceId3 = getResources().getIdentifier("vimeoNumberPlays" + i, "id", getPackageName());
-					TextView playsTitle = (TextView) findViewById(resourceId3);
-					playsTitle.setText(numberOfPlaysList.get(i));
-				}
-			}
-		} else {
-			Toast toast = Toast.makeText(context, "Please enter Vimeo username.", Toast.LENGTH_SHORT);
-            toast.show();
-		}
 	}
-	
-	@Override
-    public void onSaveInstanceState(Bundle outState)
-    {
-        super.onSaveInstanceState(outState);
-    }
-	
-	@Override
-    public void onRestoreInstanceState(Bundle savedInstanceState)
-    {
-        super.onRestoreInstanceState(savedInstanceState);
-
-        if (savedInstanceState.getString("editText") != null)
-        {
-            search.setText(savedInstanceState.getString("editText"));
-        }
-        for (int i = 0; i < 5; i++) {
-        	int resourceId = getResources().getIdentifier("vimeoAuthor" + i, "id", getPackageName());
-			TextView authorTitle = (TextView) findViewById(resourceId);
-			authorTitle.setText(savedInstanceState.getString("vimeoAuthor" + i));
-			
-			int resourceId1 = getResources().getIdentifier("vimeoTitle" + i, "id", getPackageName());
-			TextView displayTitle = (TextView) findViewById(resourceId1);
-			displayTitle.setText(savedInstanceState.getString("vimeoTitle" + i));
-			
-			int resourceId2 = getResources().getIdentifier("vimeoUploadDate" + i, "id", getPackageName());
-			TextView uploadTitle = (TextView) findViewById(resourceId2);
-			uploadTitle.setText(savedInstanceState.getString("vimeoUploadDate" + i));
-			
-			int resourceId3 = getResources().getIdentifier("vimeoNumberPlays" + i, "id", getPackageName());
-			TextView playsTitle = (TextView) findViewById(resourceId3);
-			playsTitle.setText(savedInstanceState.getString("vimeoNumberPlays" + i));
-        }
-    }
 }

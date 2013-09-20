@@ -37,9 +37,7 @@ public class FileStuff {
 	 * @return the boolean
 	 */
 	@SuppressWarnings("resource")
-	public static Boolean storeStringFile(Context context, String filename, String content){
-		Boolean external = false;
-		
+	public static Boolean storeStringFile(Context context, String filename, String content, Boolean external){
 		try{
 			File file;
 			FileOutputStream fos;
