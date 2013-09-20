@@ -62,6 +62,7 @@ public class MainActivity extends Activity {
 	TextView uploadResult;
 	TextView playsResult;
 	URL finalURL;
+	String savedFile = "savedFile.txt";
 
 	/* (non-Javadoc)
 	 * @see android.app.Activity#onCreate(android.os.Bundle)
@@ -158,11 +159,27 @@ public class MainActivity extends Activity {
 					{
 						try {
 							response = (String) msg.obj;
+							JSONArray json = new JSONArray(response);
+
+                            String handle = "";
+                            String title = "";
+                            String date = "";
+
+                            //Log.i("MAIN", "json length->"+json.length()+", json.toString->"+json.toString());
+
+                            FileStuff.storeStringFile(context, "savedFile.txt", json.toString(), false);
+                            for(int i=0;i<json.length();i++) {
+                                    handle = json.getJSONObject(i).getString("user_name");
+                                    title = json.getJSONObject(i).getString("title");
+                                    date = json.getJSONObject(i).getString("upload_date");
+                                    //Log.i("JSON DEBUG", "title="+title+", date="+date+", user_name="+handle);
+                            }
 							displayData(response);
 						} 
 						catch (Exception e)
 						{
-							Log.e("handleMessage", e.getMessage().toString());
+							Log.e("HANDLE MESSAGE", e.getMessage().toString());
+							e.printStackTrace();
 						}
 					}
 				}	
