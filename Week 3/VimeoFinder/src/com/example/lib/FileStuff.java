@@ -27,15 +27,18 @@ import android.util.Log;
  */
 public class FileStuff {
 	
-	/**
-	 * Store string file.
-	 *
-	 * @param context the context
-	 * @param filename the filename
-	 * @param content the content
-	 * @param external the external
-	 * @return the boolean
-	 */
+	private static FileStuff instance = null;
+	protected FileStuff(){
+		
+	}
+	
+	public static FileStuff getInstance(){
+		if(instance == null){
+			instance = new FileStuff();
+		}
+		return instance;
+	}
+	
 	@SuppressWarnings("resource")
 	public static Boolean storeStringFile(Context context, String filename, String content, Boolean external){
 		try{
