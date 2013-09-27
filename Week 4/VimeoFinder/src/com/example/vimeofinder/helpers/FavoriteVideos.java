@@ -5,7 +5,7 @@
  * 
  *  @author		Justin Rowe
  * 
- *  date		Sep 7, 2013
+ *  date		Sep 27, 2013
  */
 package com.example.vimeofinder.helpers;
 
@@ -27,12 +27,26 @@ import android.widget.Spinner;
  */
 public class FavoriteVideos extends LinearLayout {
 	
+	/** The add. */
 	Button add;
+	
+	/** The remove. */
 	Button remove;
+	
+	/** The list. */
 	Spinner list;
+	
+	/** The context. */
 	Context context;
+	
+	/** The tweets. */
 	ArrayList<String> tweets = new ArrayList<String>();
 	
+	/**
+	 * Instantiates a new favorite videos.
+	 *
+	 * @param context the context
+	 */
 	public FavoriteVideos(Context context){
 		super(context);
 		this.context = context;

@@ -5,7 +5,7 @@
  * 
  *  @author		Justin Rowe
  * 
- *  date		Sep 7, 2013
+ *  date		Sep 27, 2013
  */
 package com.example.lib;
 

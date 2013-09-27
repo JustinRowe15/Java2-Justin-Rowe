@@ -5,7 +5,7 @@
  * 
  *  @author		Justin Rowe
  * 
- *  date		Sep 7, 2013
+ *  date		Sep 27, 2013
  */
 package com.example.vimeofinder;
 
@@ -49,21 +49,52 @@ import android.view.View.OnClickListener;
  */
 public class MainActivity extends Activity implements MainFragment.MainListener, ExtrasFragment.ExtrasListener {
 	
+	/** The context. */
 	Context context;
+	
+	/** The tweets view. */
 	TextView tweetsView;
+	
+	/** The get tweets button. */
 	Button getTweetsButton;
+	
+	/** The favorite tweets. */
 	FavoriteVideos favoriteTweets;
+	
+	/** The connected. */
 	Boolean connected = false;
+	
+	/** The history. */
 	HashMap<String, String> history;
+	
+	/** The search. */
 	EditText search;
+	
+	/** The author result. */
 	TextView authorResult;
+	
+	/** The title result. */
 	TextView titleResult;
+	
+	/** The description result. */
 	TextView descriptionResult;
+	
+	/** The upload result. */
 	TextView uploadResult;
+	
+	/** The plays result. */
 	TextView playsResult;
+	
+	/** The final url. */
 	URL finalURL;
+	
+	/** The saved file. */
 	String savedFile = "savedFile.txt";
+	
+	/** The username. */
 	String username;
+	
+	/** The response. */
 	static String response;
 
 	/* (non-Javadoc)
@@ -213,6 +244,9 @@ public class MainActivity extends Activity implements MainFragment.MainListener,
 	}
 
 	//MAIN FRAGMENT METHODS
+	/* (non-Javadoc)
+	 * @see com.example.vimeofinder.MainFragment.MainListener#onVideoSearch()
+	 */
 	@Override
 	public void onVideoSearch() {
 		search = (EditText) findViewById(R.id.searchField); 
@@ -225,6 +259,9 @@ public class MainActivity extends Activity implements MainFragment.MainListener,
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see com.example.vimeofinder.MainFragment.MainListener#onExtrasSearch()
+	 */
 	@Override
 	public void onExtrasSearch() {
 		String username = search.getText().toString();
@@ -235,6 +272,9 @@ public class MainActivity extends Activity implements MainFragment.MainListener,
 	}
 
 	//EXTRAS FRAG METHOD
+	/* (non-Javadoc)
+	 * @see com.example.vimeofinder.ExtrasFragment.ExtrasListener#onVimeoSearch()
+	 */
 	@Override
 	public void onVimeoSearch() {
 		Bundle data = getIntent().getExtras();
@@ -251,11 +291,17 @@ public class MainActivity extends Activity implements MainFragment.MainListener,
 		
 	}
 	
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onSaveInstanceState(android.os.Bundle)
+	 */
 	@Override
 	public void onSaveInstanceState (Bundle outState) {
 		super.onSaveInstanceState(outState);
 	}
 
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onRestoreInstanceState(android.os.Bundle)
+	 */
 	@Override
 	public void onRestoreInstanceState (Bundle savedInstanceState) {
 		super.onRestoreInstanceState(savedInstanceState);

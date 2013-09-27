@@ -1,3 +1,12 @@
+/*
+ *  project		VimeoFinder
+ * 
+ *  package		com.example.vimeofinder
+ * 
+ *  @author		Justin Rowe
+ * 
+ *  date		Sep 27, 2013
+ */
 package com.example.vimeofinder;
 
 import com.example.tweetfinder.R;
@@ -11,10 +20,18 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ExtrasActivity.
+ */
 public class ExtrasActivity extends Activity implements ExtrasFragment.ExtrasListener {
 	
+	/** The username. */
 	String username;
 	
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onCreate(android.os.Bundle)
+	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
@@ -26,6 +43,9 @@ public class ExtrasActivity extends Activity implements ExtrasFragment.ExtrasLis
 		
 	}
 
+	/* (non-Javadoc)
+	 * @see com.example.vimeofinder.ExtrasFragment.ExtrasListener#onVimeoSearch()
+	 */
 	@Override
 	public void onVimeoSearch() {
 		
@@ -42,5 +62,4 @@ public class ExtrasActivity extends Activity implements ExtrasFragment.ExtrasLis
 		startActivity(internetIntent);
 		
 	}
-
 }

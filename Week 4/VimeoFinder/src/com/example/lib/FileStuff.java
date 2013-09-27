@@ -5,7 +5,7 @@
  * 
  *  @author		Justin Rowe
  * 
- *  date		Sep 7, 2013
+ *  date		Sep 27, 2013
  */
 package com.example.lib;
 
@@ -27,11 +27,21 @@ import android.util.Log;
  */
 public class FileStuff {
 	
+	/** The instance. */
 	private static FileStuff instance = null;
+	
+	/**
+	 * Instantiates a new file stuff.
+	 */
 	protected FileStuff(){
 		
 	}
 	
+	/**
+	 * Gets the single instance of FileStuff.
+	 *
+	 * @return single instance of FileStuff
+	 */
 	public static FileStuff getInstance(){
 		if(instance == null){
 			instance = new FileStuff();
@@ -39,6 +49,15 @@ public class FileStuff {
 		return instance;
 	}
 	
+	/**
+	 * Store string file.
+	 *
+	 * @param context the context
+	 * @param filename the filename
+	 * @param content the content
+	 * @param external the external
+	 * @return the boolean
+	 */
 	@SuppressWarnings("resource")
 	public static Boolean storeStringFile(Context context, String filename, String content, Boolean external){
 		try{
