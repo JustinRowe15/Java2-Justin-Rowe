@@ -151,6 +151,7 @@ public class MainActivity extends Activity implements MainFragment.MainListener,
 		try{
 			finalURL = new URL(baseURL);
 			
+			//START HANDLER
 			Handler vimeoHandler = new Handler(){
 
 				@Override
@@ -168,15 +169,13 @@ public class MainActivity extends Activity implements MainFragment.MainListener,
                             String handle = "";
                             String title = "";
                             String date = "";
-
-                            //Log.i("MAIN", "json length->"+json.length()+", json.toString->"+json.toString());
-
+                            
+                            //SAVE FILE TO TEXT DOCUMENT
                             FileStuff.storeStringFile(context, "savedFile.txt", json.toString(), false);
                             for(int i=0;i<json.length();i++) {
                                     handle = json.getJSONObject(i).getString("user_name");
                                     title = json.getJSONObject(i).getString("title");
                                     date = json.getJSONObject(i).getString("upload_date");
-                                    //Log.i("JSON DEBUG", "title="+title+", date="+date+", user_name="+handle);
                             }
 							displayData(response);
 						} 
