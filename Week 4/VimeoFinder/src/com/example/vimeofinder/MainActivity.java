@@ -64,6 +64,7 @@ public class MainActivity extends Activity implements MainFragment.MainListener,
 	URL finalURL;
 	String savedFile = "savedFile.txt";
 	String username;
+	static String response;
 
 	/* (non-Javadoc)
 	 * @see android.app.Activity#onCreate(android.os.Bundle)
@@ -125,7 +126,7 @@ public class MainActivity extends Activity implements MainFragment.MainListener,
 				public void handleMessage(Message msg) {
 					// TODO Auto-generated method stub
 					
-					String response = null;
+					response = null;
 					
 					if(msg.arg1 == RESULT_OK && msg.obj != null)
 					{
@@ -248,5 +249,19 @@ public class MainActivity extends Activity implements MainFragment.MainListener,
 		internetIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		startActivity(internetIntent);
 		
+	}
+	
+	@Override
+	public void onSaveInstanceState (Bundle outState) {
+		super.onSaveInstanceState(outState);
+	}
+
+	@Override
+	public void onRestoreInstanceState (Bundle savedInstanceState) {
+		super.onRestoreInstanceState(savedInstanceState);
+		
+		if (savedInstanceState.get(response) != null) {
+
+		}
 	}
 }
